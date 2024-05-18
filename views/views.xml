@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form View for Printing Options -->
+        <record id="view_printing_options_form" model="ir.ui.view">
+            <field name="name">printing.options.form</field>
+            <field name="model">printing.options</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div style="width: 300px;">
+                            <group>
+                                <label for="today" string="Today" class="oe_inline"/>
+                                <div class="oe_inline">
+                                    <field name="today" widget="boolean_toggle"/>
+                                </div>
+                            </group>
+                            <group>
+                                <div attrs="{'invisible': [('today', '=', True)]}">
+                                    <label for="date_from" string="Starting From"/>
+                                    <div class="oe_inline">
+                                        <field name="date_from" widget="date" class="oe_small"/>
+                                    </div>
+                                    <label for="date_to" string="Until"/>
+                                    <div class="oe_inline">
+                                        <field name="date_to" widget="date" class="oe_small"/>
+                                    </div>
+                                </div>
+                            </group>
+                        </div>
+                    </sheet>
+                    <footer>
+                        <button name="generate_sale_xlsx_report" class="btn btn-primary" type="object" string="Print"/>
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_open_printing_options" model="ir.actions.act_window">
+            <field name="name">Set Printing Options</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">printing.options</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_printing_options_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_printing_options"
+                  name="Print Report"
+                  parent="sale.sale_menu_root"
+                  sequence="99"
+                  action="action_open_printing_options"/>
+    </data>
+</odoo>
