@@ -1,0 +1,11 @@
+<odoo>
+ <report
+    id="sales_order_xlsx"
+    model="printing.options"
+    string="Print Sales Order to XLSX"
+    report_type="xlsx"
+    name="iats_sales_report_print.report_sale_orde_xls"
+    file="iats_sales_report_print.report_sale_orde_xls"
+    attachment_use="False"
+/>
+</odoo>
